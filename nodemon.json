@@ -1,0 +1,6 @@
+{
+    "watch": ["resourcess"],
+    "ext": ".ts,.js",
+    "ignode":[],
+    "exec": "npx ts-node ./resources/js/app.js"
+}
