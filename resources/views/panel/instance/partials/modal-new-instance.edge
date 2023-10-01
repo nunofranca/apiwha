@@ -1,0 +1,40 @@
+<div class="modal fade text-left" id="new-instance" tabindex="-1" role="dialog"
+    aria-labelledby="myModalLabel4" data-bs-backdrop="false" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel4">Criar nova instância</h4>
+                <button type="button" class="close" data-bs-dismiss="modal"
+                    aria-label="Close">
+                    <i data-feather="x"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+               <form "action="{{route('instance.store')}}" action="POST">
+                {{ csrfField() }}
+                 <div class="mb-3">
+                   <label for="name" class="form-label">Nome</label>
+                   <input type="name" name="name" class="form-control" id="name" placeholder="Informe o nome da instancia">
+                 </div>
+
+                 <div class="mb-3 form-check">
+                   <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                   <label class="form-check-label" for="exampleCheck1">Estou ciente</label>
+                 </div>
+                  <div class="modal-footer px-0">
+                     <button type="button" class="btn btn-light-secondary"
+                         data-bs-dismiss="modal">
+                         <i class="bx bx-x d-block d-sm-none"></i>
+                         <span class="d-none d-sm-block">Fechar</span>
+                     </button>
+                     <button type="button" class="btn btn-primary ms-1" data-bs-dismiss="modal">
+                         <i class="bx bx-check d-block d-sm-none"></i>
+                         <span class="d-none d-sm-block">Criar</span>
+                     </button>
+                 </div>
+               </form>
+            </div>
+
+        </div>
+    </div>
+</div>

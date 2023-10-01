@@ -1,28 +1,15 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 
-
 import {create, Whatsapp} from "venom-bot";
 
-const sessions: Record<string, Whatsapp> = {};
+
+export const sessions: Record<string, Whatsapp> = {};
 export const auth = async ({request, response}:HttpContextContract) => {
 
 
-  const {name} = request.all()
+  // const {name} = request.all()
+  const name = gerarStringAleatoria(15)
 
-  if (sessions[name]) {
-
-    console.log(sessions[name], 'ok')
-    await sessions[name].sendText('5575997140438@c.us', 'teste')
-      .then((messageId: any) => {
-      console.log(`Mensagem enviada com sucesso. ID da mensagem: ${messageId}`);
-      response.status(200).send({ success: true });
-    })
-      .catch((error: any) => {
-        console.error(`Erro ao enviar mensagem: ${error}`);
-        response.status(500).send({ error: 'Erro ao enviar mensagem' });
-      });
-
-  }else{
 
   await new Promise<string>((resolve) => {
     create(
@@ -31,7 +18,10 @@ export const auth = async ({request, response}:HttpContextContract) => {
       //catchQR
       async (base64Qrimg) => {
         resolve(base64Qrimg);
-        response.status(200).send({'base64': base64Qrimg})
+        response.status(200).send({
+          'base64': base64Qrimg,
+          'x_instance': name
+        })
 
       },
       // statusFind
@@ -72,8 +62,10 @@ export const auth = async ({request, response}:HttpContextContract) => {
         userPass: '' // Proxy password
       }
     )
-      .then((client:Whatsapp) => {
-        sessions[name] = client;
+      .then(async (client: Whatsapp) => {
+
+        sessions[name] = client
+
 
       })
       .catch((erro) => {
@@ -81,7 +73,16 @@ export const auth = async ({request, response}:HttpContextContract) => {
       });
   })
 
-  }
 }
 
+function gerarStringAleatoria(tamanho) {
+  const caracteres = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  let resultado = '';
 
+  for (let i = 0; i < tamanho; i++) {
+    const indiceAleatorio = Math.floor(Math.random() * caracteres.length);
+    resultado += caracteres.charAt(indiceAleatorio);
+  }
+
+  return resultado;
+}

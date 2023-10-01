@@ -9,18 +9,20 @@
   ],
   "compilerOptions": {
     "target": "es2016",
-    "lib": ["es6"], 
+    "lib": [
+      "es6"
+    ],
     "outDir": "build",
     "rootDir": "./",
     "sourceMap": true,
-    "module": "commonjs",                                
+    "module": "commonjs",
     "resolveJsonModule": true,
     "allowJs": true,
     "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,            
-    "strict": true,                                     
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
     "noImplicitAny": true,
-    "strictPropertyInitialization": false,             
+    "strictPropertyInitialization": false,
     "skipLibCheck": true,
     "paths": {
       "App/*": [
@@ -42,7 +44,10 @@
       "@adonisjs/session",
       "@adonisjs/view",
       "@adonisjs/shield",
-      "@japa/preset-adonis/build/adonis-typings"
+      "@japa/preset-adonis/build/adonis-typings",
+      "@adonisjs/redis",
+      "@adonisjs/lucid",
+      "@adonisjs/auth"
     ]
   }
 }

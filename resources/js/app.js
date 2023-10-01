@@ -1,2 +1,6 @@
 import '../css/app.css'
-import '../css/material-dashboard.css'
+import '../css/auth.css'
+import bootstrapBundle from "bootstrap/dist/js/bootstrap.bundle";
+
+window.bootstrap = bootstrapBundle
+

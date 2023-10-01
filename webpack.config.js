@@ -134,6 +134,7 @@ Encore.configureDevServerOptions((options) => {
   /**
    * Normalize "options.static" property to an array
    */
+
   if (!options.static) {
     options.static = []
   } else if (!Array.isArray(options.static)) {
@@ -159,7 +160,7 @@ Encore.configureDevServerOptions((options) => {
 | favorite CSS precompiler
 |
 */
-// Encore.enableSassLoader()
+//Encore.enableSassLoader()
 // Encore.enableLessLoader()
 // Encore.enableStylusLoader()
 
