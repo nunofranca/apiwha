@@ -48,6 +48,7 @@ Encore.setPublicPath('/assets')
 |
 */
 Encore.addEntry('app', './resources/js/app.js')
+Encore.addEntry('auth', './resources/js/auth.js')
 
 
 /*
@@ -134,7 +135,7 @@ Encore.configureDevServerOptions((options) => {
   /**
    * Normalize "options.static" property to an array
    */
-
+  options.port = 3333; // Altere a porta para 3333
   if (!options.static) {
     options.static = []
   } else if (!Array.isArray(options.static)) {

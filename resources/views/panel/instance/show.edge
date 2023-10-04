@@ -1,0 +1,72 @@
+@layout('layouts/master')
+
+@section('content')
+<div class="page-heading">
+    <div class="page-title">
+        <div class="row">
+            <div class="col-12 col-md-6 order-md-1 order-last">
+                <h3>Account Profile</h3>
+                <p class="text-subtitle text-muted">A page where users can change profile information</p>
+            </div>
+            <div class="col-12 col-md-6 order-md-2 order-first">
+                <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+                        <li class="breadcrumb-item">Account</li>
+                        <li class="breadcrumb-item active" aria-current="page">Profile</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <section class="section">
+        <div class="row">
+            <div class="col-4">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-center align-items-center flex-column">
+                            <div id="qrcode" class="avatar avatar-2xl">
+
+
+                            </div>
+                            <button class="btn btn-primary my-3">Change Picture</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-8">
+                <div class="card">
+                    <div class="card-body">
+                        <form action="#" method="get">
+                            <div class="form-group">
+                                <label for="name" class="form-label">Name</label>
+                                <input type="text"  value="{{instance.name}}"  class="form-control" disabled>
+                            </div>
+                            <div class="form-group">
+                                <label for="email" class="form-label">ID</label>
+                                <input disabled id="idInstance" type="text" value="{{instance.instance}}" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="phone" class="form-label">Vencimento</label>
+                                <input disabled type="text" value="{{instance.expiration}}" class="form-control" >
+                            </div>
+
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+@section('scripts')
+  <script>
+
+  const idInstance = document.querySelector('#idInstance')
+
+
+  </script>
+
+@end
+@end

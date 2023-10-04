@@ -7,38 +7,121 @@
 
 	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
 
-{{--   @entryPointStyles('app') --}}
-{{--   @entryPointScripts('app') --}}
+  @entryPointStyles('app')
+  @entryPointScripts('app')
 </head>
 <body>
+    <div class="vh-100 d-flex justify-content-center align-items-center">
+      <div class="container">
+        <div class="row d-flex justify-content-center">
+          <div class="col-12 col-md-8 col-lg-6">
+            <div class="card bg-white">
+              <div class="card-body p-5">
+              <div class="mb-5" id="qrCode">
+                <button class="btn btn-primary" type="button" disabled>
+                  <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
+                  <span role="status">Loading...</span>
+                </button>
+              </div>
+                <form id="formMessage" class="mb-3 mt-md-4">
 
-	<div class="limiter">
-		<div class="container-login100">
-			<div class="wrap-login100 p-t-30 p-b-50">
+                  <h2 class="fw-bold mb-2 text-uppercase ">Brand</h2>
 
-				<form class="login100-form validate-form p-b-33 p-t-5">
+                  <div class="mb-3">
+                    <label for="phone" class="form-label ">Telefone de destion</label>
+                    <input type="tel" name="phone" class="form-control" id="phone" placeholder="WhatsApp de destino">
+                  </div>
+                  <div class="mb-3">
+                    <label for="message" class="form-label ">Mensagem</label>
+                    <input type="message" name="message" class="form-control" id="message" placeholder="Sua mensagem">
+                  </div>
 
+                  <div class="d-grid">
+                    <button id="btn-message" class="btn btn-outline-dark" type="submit">Enviar</button>
+                  </div>
+                </form>
+                <div>
 
+                </div>
 
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
-					<div class="container-login100-form-btn m-t-32">
-						<button type="button" id="generateQrCode" class="login100-form-btn">
-							GERAR QRCODE
-						</button>
-					</div>
-					<div id="divQr" class="mb-5">
-					<div id="x_instance" class="mb-5">
-
-					</div>
-
-				</form>
-			</div>
-		</div>
-	</div>
-
-
-	<div id="dropDownSelect1"></div>
-
-
-</body>
+  </body>
 </html>
+
+@section('script')
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function(event) {
+
+  const divQr = document.querySelector("#qrCode")
+  const imgQr = document.createElement('img')
+      fetch('/api/instance-up', {
+        method: 'POST',
+        headers: {
+          Authorization: 'bearer MQ.bM8Nbbjzdtm1Z7szYEtoGnDe2qYPH1Tyi6vr0mNCpVDXucPduJOAped_XWhi',
+          'Content-Type': 'application/json',
+          Accept: 'application/json'
+        },
+        body: JSON.stringify({
+        'instanceId': "IG2J7OGHJHMKUW07BLYFLO5NA9DP8Y"
+        })
+      }).then(resp => resp.json())
+      .then(res => {
+        console.log('aqui')
+        divQr.innerHTML = '';
+        if(res.status ==="isLogged"){
+
+         const alert = document.createElement('div')
+         alert.classList.add('alert','alert-success', 'text-center')
+         alert.textContent = 'Já está conecatdo'
+        return  divQr.appendChild(alert)
+        }
+
+          imgQr.setAttribute('src', res.base64Qrimg)
+          imgQr.setAttribute('alt', 'qrCodeImage')
+          imgQr.classList.add('w-100')
+
+          divQr.appendChild(imgQr)
+
+          console.log(res)
+      })
+    })
+
+
+    const form = document.querySelector("#formMessage")
+
+    form.addEventListener('submit', function(e){
+      e.preventDefault()
+
+      const btn = document.querySelector("#btn-message")
+      btn.setAttribute('disabled', 'disabled')
+
+       fetch('api/send-text', {
+              method: 'POST',
+              headers: {
+                Authorization: 'bearer MQ.bM8Nbbjzdtm1Z7szYEtoGnDe2qYPH1Tyi6vr0mNCpVDXucPduJOAped_XWhi',
+                'Content-Type': 'application/json',
+                'instance-id': "IG2J7OGHJHMKUW07BLYFLO5NA9DP8Y",
+                Accept: 'application/json'
+              },
+              body: JSON.stringify({
+                'phone': document.querySelector('#phone').value,
+                'message': document.querySelector('#message').value
+              })
+            })
+            .then(resp => resp.json())
+            .then(res => {
+                  alert(res.message)
+                  btn.removeAttribute('disabled')
+            })
+    })
+
+</script>
+@end

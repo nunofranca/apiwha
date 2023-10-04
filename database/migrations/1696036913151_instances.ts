@@ -7,17 +7,16 @@ export default class extends BaseSchema {
     this.schema.createTable(this.tableName, (table) => {
       table.increments('id')
       table.integer('user_id')
-        .references('users.id')
-        .onDelete('cascade')
-        .onUpdate('cascade')
       table.string('instance')
       table.string('name')
-      table.date('expiration')
+      table.string('status').defaultTo('notLogged')
+
+
       /**
        * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL
        */
-      table.timestamp('created_at', {useTz: true})
-      table.timestamp('updated_at', {useTz: true})
+      table.timestamp('created_at', { useTz: true, precision: 6 })
+      table.timestamp('updated_at', { useTz: true, precision: 6 })
     })
   }
 

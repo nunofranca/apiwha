@@ -1,17 +1,13 @@
 {
   "name": "api-whastapp-adonis",
   "version": "1.0.0",
-  "tyope": "module",
   "private": true,
   "scripts": {
     "build": "rimraf ./build && tsc && node ace build --production",
     "dev": "node ace serve --watch",
     "start": "npm run build && node server.js",
     "test": "node ace test",
-    "venom": "npx ts-node ./resources/js/app.js",
-    "app": "docker exec -it adonis_app /bin/sh",
-    "redis": "docker exec -it redis /bin/sh",
-    "pg": "docker exec -it postgres /bin/sh"
+    "venom": "npx ts-node ./resources/js/app.js"
   },
   "devDependencies": {
     "@adonisjs/assembler": "^5.9.5",
@@ -38,7 +34,9 @@
   },
   "dependencies": {
     "@adonisjs/auth": "^8.2.3",
+    "@adonisjs/bouncer": "^2.3.0",
     "@adonisjs/core": "^5.9.0",
+    "@adonisjs/drive": "^2.3.0",
     "@adonisjs/lucid": "^18.4.2",
     "@adonisjs/redis": "^7.3.4",
     "@adonisjs/repl": "^3.1.11",

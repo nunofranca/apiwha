@@ -20,7 +20,7 @@
     </div>
     <section class="section">
         <div class="card">
-          <div>
+          <div class="mt-3 mx-3 d-flex justify-content-end">
              <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#new-instance">
                  NOVA INSTÂNCIA
              </button>
@@ -37,15 +37,19 @@
                         </tr>
                     </thead>
                     <tbody>
+                    @each(instance in instances)
+
                         <tr>
-                            <td>Graiden</td>
-                            <td>vehicula.aliquet@semconsequat.co.uk</td>
-                            <td>076 4820 8838</td>
-                            <td>Offenburg</td>
+                            <td>{{instance.name}}</td>
+                            <td>{{instance.instance}}</td>
+                            <td>{{instance.created_at}}</td>
+                            <td>{{instance.expiration}}</td>
+
                             <td>
                                 <span class="badge bg-success">Active</span>
                             </td>
                         </tr>
+                        @end
 
                     </tbody>
                 </table>

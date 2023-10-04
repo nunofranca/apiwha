@@ -5,7 +5,7 @@ import Hash from '@ioc:Adonis/Core/Hash'
 
 export default Factory.define(User, async ({faker}) => {
     return {
-        name: faker.internet.domainName(),
+        name: 'nunofranca',
         email: faker.internet.email(),
         username: faker.internet.userName(),
         password: await Hash.make('123mudar'),

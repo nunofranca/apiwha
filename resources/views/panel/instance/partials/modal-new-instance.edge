@@ -10,7 +10,7 @@
                 </button>
             </div>
             <div class="modal-body">
-               <form "action="{{route('instance.store')}}" action="POST">
+               <form "action="{{route('instance.store')}}" method="POST">
                 {{ csrfField() }}
                  <div class="mb-3">
                    <label for="name" class="form-label">Nome</label>
@@ -27,7 +27,7 @@
                          <i class="bx bx-x d-block d-sm-none"></i>
                          <span class="d-none d-sm-block">Fechar</span>
                      </button>
-                     <button type="button" class="btn btn-primary ms-1" data-bs-dismiss="modal">
+                     <button type="submit" class="btn btn-primary ms-1" data-bs-dismiss="modal">
                          <i class="bx bx-check d-block d-sm-none"></i>
                          <span class="d-none d-sm-block">Criar</span>
                      </button>

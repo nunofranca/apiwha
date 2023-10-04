@@ -5,12 +5,11 @@ import {
   belongsTo,
   BelongsTo
 } from '@ioc:Adonis/Lucid/Orm'
-import Protocol from "devtools-protocol";
-import integer = Protocol.integer;
+
 import User from "App/Models/User";
 
 export default class Instance extends BaseModel {
-  @column({isPrimary: true})
+  @column({isPrimary: true, serializeAs: null})
   public id: number
 
   @column()
@@ -20,15 +19,15 @@ export default class Instance extends BaseModel {
   public name: string
 
   @column()
-  public expiration: Date
+  public status: string
 
-  @column()
+  @column({ serializeAs: null })
   public userId: number
 
-  @column.dateTime({autoCreate: true})
+  @column.dateTime({autoCreate: true, serializeAs: null})
   public createdAt: DateTime
 
-  @column.dateTime({autoCreate: true, autoUpdate: true})
+  @column.dateTime({autoCreate: true, autoUpdate: true, serializeAs: null})
   public updatedAt: DateTime
 
   @belongsTo(() => User)

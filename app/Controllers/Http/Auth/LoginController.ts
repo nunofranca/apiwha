@@ -10,6 +10,7 @@ export default class LoginController {
     const {username, password} = request.all()
 
 
+
     try {
       await auth.use('web').attempt(username, password)
       return response.redirect().toRoute('panel.dashboard')
